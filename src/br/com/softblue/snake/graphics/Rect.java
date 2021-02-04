@@ -1,38 +1,34 @@
 package br.com.softblue.snake.graphics;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 
 public class Rect {
 
-	private int x;
-	private int y;
-	private int width;
-	private int height;
+	private Point location;
+	private Dimension dimension;
 	private Color color;
 
 	public Rect(int x, int y, int width, int height, Color color) {
-		this.x = x;
-		this.y = y;
-		this.width = width;
-		this.height = height;
+		this.location = new Point(x, y);
+		this.dimension = new Dimension(width, height);
 		this.color = color;
 	}
 
-	public int getX() {
-		return x;
+	public Rect(Point location, Dimension dimension, Color color) {
+		this.location = location;
+		this.dimension = dimension;
+		this.color = color;
 	}
 
-	public int getY() {
-		return y;
+	public Point getLocation() {
+		return location;
 	}
 
-	public int getWidth() {
-		return width;
-	}
-
-	public int getHeight() {
-		return height;
+	public Dimension getDimension() {
+		return dimension;
 	}
 
 	public Color getColor() {
@@ -41,7 +37,13 @@ public class Rect {
 
 	public void draw(Graphics g) {
 		g.setColor(color);
-		g.fillRect(x, y, width, height);
+		
+		g.fillRect(
+			(int) location.getX(), 
+			(int) location.getY(), 
+			(int) dimension.getWidth(), 
+			(int) dimension.getHeight()
+		);
 	}
 
 }
