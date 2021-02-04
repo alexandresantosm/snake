@@ -1,5 +1,6 @@
 package br.com.softblue.snake.graphics;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.util.ArrayList;
@@ -9,7 +10,9 @@ public class Shape extends Drawable {
 
 	private List<Rect> rects;
 	
-	public Shape() {
+	public Shape(Color color) {
+		super(color);
+		
 		rects = new ArrayList<>();
 	}
 	

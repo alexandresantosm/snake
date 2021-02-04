@@ -7,7 +7,7 @@ import br.com.softblue.snake.util.Constants;
 public class Snake extends Shape {
 	
 	public Snake() {
-		setColor(Constants.SNAKE_COLOR);
+		super(Constants.SNAKE_COLOR);
 		
 		Rect rect = new Rect(
 				Constants.SNAKE_INITIAL_X, 
@@ -20,7 +20,6 @@ public class Snake extends Shape {
 		
 		for (int i = 1; i < Constants.SNAKE_PIECE_SIZE; i++) {
 			rect = duplicate(rect);
-			rect.setColor(Constants.SNAKE_COLOR);
 			addRect(rect);
 		}
 	}

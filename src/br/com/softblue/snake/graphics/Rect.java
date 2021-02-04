@@ -28,9 +28,7 @@ public class Rect extends Drawable {
 	}
 
 	@Override
-	public void draw(Graphics g) {
-		g.setColor(getColor());
-		
+	public void draw(Graphics g) {		
 		g.fillRect(
 			(int) location.getX(), 
 			(int) location.getY(), 

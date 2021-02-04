@@ -22,6 +22,7 @@ public class Renderer {
 	
 	public void render(Graphics g) {
 		for (Drawable drawable : drawables) {
+			g.setColor(drawable.getColor());
 			drawable.draw(g);
 		}
 	}

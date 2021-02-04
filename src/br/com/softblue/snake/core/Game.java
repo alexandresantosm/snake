@@ -21,7 +21,7 @@ public class Game {
 	
 	public void run() {
 		if (isGameOver()) {
-			
+			gameWindow.repaint();
 		}
 	}
 	
