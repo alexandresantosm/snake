@@ -1,26 +1,22 @@
 package br.com.softblue.snake.graphics;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 
-public class Rect {
+public class Rect extends Drawable {
 
 	private Point location;
 	private Dimension dimension;
-	private Color color;
 
-	public Rect(int x, int y, int width, int height, Color color) {
+	public Rect(int x, int y, int width, int height) {
 		this.location = new Point(x, y);
 		this.dimension = new Dimension(width, height);
-		this.color = color;
 	}
 
-	public Rect(Point location, Dimension dimension, Color color) {
+	public Rect(Point location, Dimension dimension) {
 		this.location = location;
 		this.dimension = dimension;
-		this.color = color;
 	}
 
 	public Point getLocation() {
@@ -31,12 +27,9 @@ public class Rect {
 		return dimension;
 	}
 
-	public Color getColor() {
-		return color;
-	}
-
+	@Override
 	public void draw(Graphics g) {
-		g.setColor(color);
+		g.setColor(getColor());
 		
 		g.fillRect(
 			(int) location.getX(), 
