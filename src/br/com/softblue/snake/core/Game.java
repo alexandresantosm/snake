@@ -9,6 +9,7 @@ import br.com.softblue.snake.graphics.Rect;
 import br.com.softblue.snake.graphics.Renderer;
 import br.com.softblue.snake.scene.Background;
 import br.com.softblue.snake.scene.Food;
+import br.com.softblue.snake.scene.GameOverText;
 import br.com.softblue.snake.scene.Snake;
 import br.com.softblue.snake.util.GameUtils;
 
@@ -48,7 +49,7 @@ public class Game implements Runnable {
 			GameUtils.sleep(SLEEP_TIME);
 		}
 		
-		gameWindow.dispose();
+		processGameOver();
 	}
 	
 	public boolean isGameOver() {
@@ -77,5 +78,14 @@ public class Game implements Runnable {
 		}
 		
 		return false;
+	}
+	
+	private void processGameOver() {
+		renderer.remove(snake);
+		renderer.remove(food);
+		
+		renderer.add(new GameOverText(food.getEatenTimes()));
+		
+		gameWindow.repaint();
 	}
 }

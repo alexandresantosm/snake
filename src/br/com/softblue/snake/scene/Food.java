@@ -21,6 +21,10 @@ public class Food extends Rect {
 		setColor(GREEN);
 	}
 	
+	public int getEatenTimes() {
+		return eatenTimes;
+	}
+
 	public void setRandomLocation(Rectangle drawingArea, Snake snake) {
 		do {
 			int offset = 3;

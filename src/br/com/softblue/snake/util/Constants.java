@@ -2,8 +2,10 @@ package br.com.softblue.snake.util;
 
 import static java.awt.Color.BLACK;
 import static java.awt.Color.WHITE;
+import static java.awt.Color.RED;
 
 import java.awt.Color;
+import java.awt.Point;
 
 public class Constants {
 	
@@ -20,4 +22,7 @@ public class Constants {
 	public static final int GAME_MIN_TIME_BETWEEN_KEYBOARD_EVENTS = 40;
 	public static final int SLEEP_TIME = 30;
 	public static final int FOOD_SIZE = 5;
+	public static final String GAME_OVER_TEXT = "GAME OVER! \nPONTUAÇÃO: %d PONTOS";
+	public static final Point GAME_OVER_TEXT_LOCATION = new Point(WINDOW_WIDTH /  2 - 80, WINDOW_HEIGHT / 2);
+	public static final Color GAME_OVER_TEXT_COLOR = RED;
 }
