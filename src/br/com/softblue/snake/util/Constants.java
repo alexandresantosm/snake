@@ -22,7 +22,9 @@ public class Constants {
 	public static final int GAME_MIN_TIME_BETWEEN_KEYBOARD_EVENTS = 40;
 	public static final int SLEEP_TIME = 30;
 	public static final int FOOD_SIZE = 5;
-	public static final String GAME_OVER_TEXT = "GAME OVER! \nPONTUAÇÃO: %d PONTOS";
-	public static final Point GAME_OVER_TEXT_LOCATION = new Point(WINDOW_WIDTH /  2 - 80, WINDOW_HEIGHT / 2);
+	public static final String GAME_OVER_TEXT = "GAME OVER!";
+	public static final String GAME_OVER_TEXT_SCORE = "PONTUAÇÃO: %d PONTOS";
+	public static final Point GAME_OVER_TEXT_LOCATION = new Point(WINDOW_WIDTH /  2 - 40, WINDOW_HEIGHT / 2);
+	public static final Point GAME_OVER_TEXT_LOCATION_SCORE = new Point(WINDOW_WIDTH /  2 - 80, (WINDOW_HEIGHT + 30) / 2);
 	public static final Color GAME_OVER_TEXT_COLOR = RED;
 }

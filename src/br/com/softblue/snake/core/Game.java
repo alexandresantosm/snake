@@ -84,6 +84,7 @@ public class Game implements Runnable {
 		renderer.remove(snake);
 		renderer.remove(food);
 		
+		renderer.add(new GameOverText());
 		renderer.add(new GameOverText(food.getEatenTimes()));
 		
 		gameWindow.repaint();
