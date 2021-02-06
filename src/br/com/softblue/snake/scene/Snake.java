@@ -1,9 +1,19 @@
 package br.com.softblue.snake.scene;
 
+import static br.com.softblue.snake.core.Direction.DOWN;
+import static br.com.softblue.snake.core.Direction.LEFT;
+import static br.com.softblue.snake.core.Direction.NONE;
+import static br.com.softblue.snake.core.Direction.RIGHT;
+import static br.com.softblue.snake.core.Direction.UP;
+import static br.com.softblue.snake.util.Constants.SNAKE_COLOR;
+import static br.com.softblue.snake.util.Constants.SNAKE_INITIAL_X;
+import static br.com.softblue.snake.util.Constants.SNAKE_INITIAL_Y;
+import static br.com.softblue.snake.util.Constants.SNAKE_PIECE_SIZE;
+import static br.com.softblue.snake.util.Constants.SNAKE_SIZE;
+
 import br.com.softblue.snake.core.Direction;
 import br.com.softblue.snake.graphics.Rect;
 import br.com.softblue.snake.graphics.Shape;
-import br.com.softblue.snake.util.Constants;
 import br.com.softblue.snake.util.GameUtils;
 
 public class Snake extends Shape {
@@ -11,27 +21,27 @@ public class Snake extends Shape {
 	private Direction direction;
 	
 	public Snake() {
-		super(Constants.SNAKE_COLOR);
+		super(SNAKE_COLOR);
 		
-		direction = Direction.NONE;
+		direction = NONE;
 		
 		Rect rect = new Rect(
-				Constants.SNAKE_INITIAL_X, 
-				Constants.SNAKE_INITIAL_Y, 
-				Constants.SNAKE_PIECE_SIZE, 
-				Constants.SNAKE_PIECE_SIZE
+				SNAKE_INITIAL_X, 
+				SNAKE_INITIAL_Y, 
+				SNAKE_PIECE_SIZE, 
+				SNAKE_PIECE_SIZE
 		);
 		
 		addRect(rect);
 		
-		for (int i = 1; i < Constants.SNAKE_SIZE; i++) {
-			rect = duplicate(rect, Direction.LEFT);
+		for (int i = 1; i < SNAKE_SIZE; i++) {
+			rect = duplicate(rect, LEFT);
 			addRect(rect);
 		}
 	}
 	
-	public void move() {
-		if (direction != Direction.NONE) {
+	public synchronized void move() {
+		if (direction != NONE) {
 			Rect head = getFirstRect();
 			
 			GameUtils.moveRect(getRects());
@@ -42,27 +52,27 @@ public class Snake extends Shape {
 		}
 	}
 	
-	public void up() {
-		if (direction.canChangeTo(Direction.UP)) {
-			direction = Direction.UP;
+	public synchronized void up() {
+		if (direction.canChangeTo(UP)) {
+			direction = UP;
 		}
 	}
 	
-	public void down() {
-		if (direction.canChangeTo(Direction.DOWN)) {
-			direction = Direction.DOWN;
+	public synchronized void down() {
+		if (direction.canChangeTo(DOWN)) {
+			direction = DOWN;
 		}
 	}
 	
-	public void left() {
-		if (direction.canChangeTo(Direction.LEFT)) {
-			direction = Direction.LEFT;
+	public synchronized void left() {
+		if (direction.canChangeTo(LEFT)) {
+			direction = LEFT;
 		}
 	}
 	
-	public void right() {
-		if (direction.canChangeTo(Direction.RIGHT)) {
-			direction = Direction.RIGHT;
+	public synchronized void right() {
+		if (direction.canChangeTo(RIGHT)) {
+			direction = RIGHT;
 		}
 	}
 	
