@@ -1,5 +1,11 @@
 package br.com.softblue.snake.core;
 
+import static br.com.softblue.snake.util.Constants.SNAKE_PIECE_SIZE;
+import static br.com.softblue.snake.util.Constants.SLEEP_TIME;
+
+import java.awt.Rectangle;
+
+import br.com.softblue.snake.graphics.Rect;
 import br.com.softblue.snake.graphics.Renderer;
 import br.com.softblue.snake.scene.Background;
 import br.com.softblue.snake.scene.Snake;
@@ -33,13 +39,37 @@ public class Game implements Runnable {
 			
 			gameWindow.repaint();
 			
-			GameUtils.sleep(30);
+			GameUtils.sleep(SLEEP_TIME);
 		}
 		
 		gameWindow.dispose();
 	}
 	
 	public boolean isGameOver() {
-		return snake.collidesWithItself();
+		return snake.collidesWithItself() || isSnakeHitBounds();
+	}
+	
+	private boolean isSnakeHitBounds() {
+		Rect head = snake.getFirstRect();
+		Rectangle drawingArea = gameWindow.getDrawingArea();
+		
+		int headX = (int) head.getLocation().getX();
+		int headY = (int) head.getLocation().getY();
+		
+		int areaX1 = (int) drawingArea.getMinX();
+		int areaY1 = (int) drawingArea.getMinY() - SNAKE_PIECE_SIZE * 2;
+		
+		int areaX2 = (int) drawingArea.getMaxX();
+		int areaY2 = (int) drawingArea.getMaxY();
+		
+		if (headX <= areaX1 || headX + SNAKE_PIECE_SIZE >= areaX2) {
+			return true;
+		}
+		
+		if (headY <= areaY1 || headY + SNAKE_PIECE_SIZE >= areaY2) {
+			return true;
+		}
+		
+		return false;
 	}
 }
