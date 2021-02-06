@@ -5,11 +5,13 @@ import static br.com.softblue.snake.core.Direction.LEFT;
 import static br.com.softblue.snake.core.Direction.NONE;
 import static br.com.softblue.snake.core.Direction.RIGHT;
 import static br.com.softblue.snake.core.Direction.UP;
+
 import static br.com.softblue.snake.util.Constants.SNAKE_COLOR;
 import static br.com.softblue.snake.util.Constants.SNAKE_INITIAL_X;
 import static br.com.softblue.snake.util.Constants.SNAKE_INITIAL_Y;
 import static br.com.softblue.snake.util.Constants.SNAKE_PIECE_SIZE;
 import static br.com.softblue.snake.util.Constants.SNAKE_SIZE;
+import static br.com.softblue.snake.util.Constants.SNAKE_ELONGATE_PIECES;
 
 import br.com.softblue.snake.core.Direction;
 import br.com.softblue.snake.graphics.Rect;
@@ -19,6 +21,7 @@ import br.com.softblue.snake.util.GameUtils;
 public class Snake extends Shape {
 	
 	private Direction direction;
+	private int piecesToElongate;
 	
 	public Snake() {
 		super(SNAKE_COLOR);
@@ -43,12 +46,19 @@ public class Snake extends Shape {
 	public synchronized void move() {
 		if (direction != NONE) {
 			Rect head = getFirstRect();
+			Rect tail = getLastRect();
 			
 			GameUtils.moveRect(getRects());
 			
 			Rect newHead = duplicate(head, direction);
 			
 			getRects().set(0, newHead);
+			
+			if (piecesToElongate > 0) {
+				getRects().add(tail);
+				
+				piecesToElongate--;
+			}
 		}
 	}
 	
@@ -88,5 +98,9 @@ public class Snake extends Shape {
 		}
 		
 		return false;
+	}
+	
+	public void elongate() {
+		piecesToElongate = SNAKE_ELONGATE_PIECES;
 	}
 }

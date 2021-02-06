@@ -8,6 +8,7 @@ import java.awt.Rectangle;
 import br.com.softblue.snake.graphics.Rect;
 import br.com.softblue.snake.graphics.Renderer;
 import br.com.softblue.snake.scene.Background;
+import br.com.softblue.snake.scene.Food;
 import br.com.softblue.snake.scene.Snake;
 import br.com.softblue.snake.util.GameUtils;
 
@@ -15,11 +16,13 @@ public class Game implements Runnable {
 	
 	private GameWindow gameWindow;
 	private Snake snake;
+	private Food food;
 	private Renderer renderer;
 	
 	public void start() {
 		snake = new Snake();
 		gameWindow = new GameWindow(snake);
+		food = new Food(gameWindow.getDrawingArea(), snake);
 		
 		renderer = gameWindow.getRenderer();
 		addElementsToScreen();
@@ -30,12 +33,15 @@ public class Game implements Runnable {
 	private void addElementsToScreen() {
 		renderer.add(new Background());
 		renderer.add(snake);
+		renderer.add(food);
 	}
 	
 	@Override
 	public void run() {
 		while (!isGameOver()) {
 			snake.move();
+			
+			food.checkIfEaten(snake, gameWindow.getDrawingArea());
 			
 			gameWindow.repaint();
 			
